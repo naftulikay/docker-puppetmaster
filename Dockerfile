@@ -23,7 +23,7 @@ RUN chmod +x /etc/service/puppetmaster/run
 VOLUME ["/config", "/data", "/log"]
 
 # Tweak the configuration, move it around, etc.
-RUN mv /etc/puppet/* /config && rmdir /etc/puppet && ln -s /config /etc/puppet
+RUN mv /etc/puppet /config && ln -s /config /etc/puppet
 
 # Expose Puppet Master port
 EXPOSE 8410
