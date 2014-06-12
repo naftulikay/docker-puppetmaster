@@ -1,0 +1,55 @@
+{
+  "name": "garethr-docker",
+  "version": "0.13.0",
+  "source": "git://github.com/garethr/garethr-docker.git",
+  "author": "Gareth Rushgrove",
+  "license": "Apache License, Version 2.0",
+  "summary": "Module for installing docker from repository on get.docker.io",
+  "description": "Install and manage docker",
+  "project_page": "UNKNOWN",
+  "dependencies": [
+    {
+      "name": "puppetlabs/apt",
+      "version_requirement": ">= 1.1.0"
+    },
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">=4.1.0"
+    },
+    {
+      "name": "stahnma/epel",
+      "version_requirement": ">=0.0.6"
+    }
+  ],
+  "types": [
+
+  ],
+  "checksums": {
+    "CONTRIBUTING.md": "9e5516497e36260d2ebfc266996f9163",
+    "Gemfile": "a4a01ebb484c6f95bd2835d9a18f7cc8",
+    "Gemfile.lock": "11b6f342714ea24fc581e401280148de",
+    "LICENSE": "e7fff5d8ca4f44f1279782ead2da5925",
+    "Modulefile": "2182c2bea1ea10c2e249a3f203191e21",
+    "README.md": "8820a72f49fb099fb3385f70b020ce56",
+    "Rakefile": "a98b55f4dff239db6e4ab16bbe795a0b",
+    "manifests/config.pp": "0006bfc445afb8eaee85dffc86921f38",
+    "manifests/image.pp": "98ef9967b6fa54852ab1b3e6091cbce3",
+    "manifests/init.pp": "9d302f15cc6f4dd7dd02308cc58486b7",
+    "manifests/install.pp": "decb1db790fcdd494b8ea13822ccebbb",
+    "manifests/params.pp": "7dd33713cbc630e50d41eda64434a2b1",
+    "manifests/run.pp": "638851517c733c45ff6def44ccc9ff1e",
+    "manifests/run_instance.pp": "46aff869e6321273c4643dc8465219db",
+    "manifests/service.pp": "4bdd9f2602c7eaddfec5dad431ec35f5",
+    "spec/classes/docker_spec.rb": "1d14031f42e5e12992693e421077cc37",
+    "spec/defines/image_spec.rb": "7f2f83c1bb3c45998268e2f75ee0bd81",
+    "spec/defines/run_spec.rb": "e165e32ae47c946f5be4a9bca8081399",
+    "spec/spec_helper.rb": "0db89c9a486df193c0e40095422e19dc",
+    "spec/spec_helper_system.rb": "22906c2656f65d02c0e887730dcf04f0",
+    "spec/system/docker_spec.rb": "2c1c4470145bc185ccde89044babd74c",
+    "templates/etc/init/docker-run.conf.erb": "22c87ef2d18a2552c3b889e160bd57d9",
+    "templates/etc/init/docker.conf.erb": "b86c36da4a1a257f1743b259a2a8d2e0",
+    "templates/etc/init.d/docker-run.erb": "2d19cfdcbfcff95b43b28067680368bc",
+    "templates/etc/sysconfig/docker.erb": "4f614391c7ff8480145aff388e51fdb6",
+    "tests/base.pp": "abf2f440073ac921587b1649794eb542"
+  }
+}
