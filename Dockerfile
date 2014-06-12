@@ -15,10 +15,15 @@ RUN wget -q https://apt.puppetlabs.com/puppetlabs-release-trusty.deb && \
     && rm puppetlabs-release-trusty.deb && apt-get update -q 2 && \
     DEBIAN_FRONTEND=noninteractive apt-get install --yes -q 2 puppetmaster >/dev/null
 
-# Tweak the configuration, move it around, etc.
+# Install runit startup script
+ADD scripts/puppetmaster-startup.sh /etc/service/puppetmaster/run
+RUN chmod +x /etc/service/puppetmaster/run
 
 # Expose configuration, data, and log volumes
 VOLUME ["/config", "/data", "/log"]
+
+# Tweak the configuration, move it around, etc.
+RUN mv /etc/puppet/* /config && rmdir /etc/puppet && ln -s /config /etc/puppet
 
 # Expose Puppet Master port
 EXPOSE 8410
