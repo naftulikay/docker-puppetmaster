@@ -21,7 +21,6 @@ EXPOSE 8410
 VOLUME ["/data"]
 
 # cleanup
-RUN apt-get remove -y wget > /dev/null  && apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 CMD ["/sbin/my_init"]
