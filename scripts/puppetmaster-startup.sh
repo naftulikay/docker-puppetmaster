@@ -29,6 +29,9 @@ create_and_own /data/manifests puppet
 create_and_own /data/modules puppet
 create_and_own /data/environments puppet
 
+# only root can do important things in /data
+chmod 7775 /data
+
 # only the puppet user can read/write/execute things in here
 chmod 7770 /data/manifests /data/modules /data/environments
 
