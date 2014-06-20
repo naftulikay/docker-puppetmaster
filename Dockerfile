@@ -1,4 +1,4 @@
-FROM rfkrocktk/puppet:1.0.0
+FROM rfkrocktk/puppet:1.0.1
 MAINTAINER Naftuli Tzvi Kay <rfkrocktk@gmail.com>
 
 ENV HOME /root
