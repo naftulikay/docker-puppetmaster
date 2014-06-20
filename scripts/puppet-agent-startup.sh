@@ -14,8 +14,21 @@ test -z "$PUPPETMASTER_TCP_PORT" && export PUPPETMASTER_TCP_PORT="8410"
 # default puppet environment is 'production'
 test -z "$PUPPET_AGENT_ENVIRONMENT" && export PUPPET_AGENT_ENVIRONMENT="production"
 
+# if PUPPET_AGENT_VERBOSE, make it so
+if [ ! -z "$PUPPET_AGENT_VERBOSE" ] ; then
+    puppet_agent_args="--verbose"
+fi
+
+# if PUPPET_AGENT_DEBUG, make it so
+if [ ! -z "$PUPPET_AGENT_DEBUG" ]; then
+    puppet_agent_args="$puppet_agent_args --debug"
+fi
+
+# setup no daemonize
+puppet_agent_args="$puppet_agent_args --no-daemonize"
+
 # connect to the local server listening on PUPPETMASTER_TCP_PORT
-puppet_agent_args="--no-daemonize --masterport $PUPPETMASTER_TCP_PORT --server $hostname"
+puppet_agent_args="$puppet_agent_args --server $hostname --masterport $PUPPETMASTER_TCP_PORT"
 
 # setup the agent environment
 puppet_agent_args="$puppet_agent_args --environment $PUPPET_AGENT_ENVIRONMENT"
