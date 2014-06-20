@@ -19,6 +19,9 @@ RUN curl -o puppet.deb -s https://apt.puppetlabs.com/puppetlabs-release-trusty.d
 RUN apt-get update -q 2 && DEBIAN_FRONTEND=noninteractive \
     apt-get install --yes -q 2 puppetmaster puppet >/dev/null
 
+# Move /etc/puppet to /data
+RUN cp -r /etc/puppet /data
+
 # Install runit startup scripts
 ADD scripts/puppet-agent-startup.sh /etc/service/puppet/run
 RUN chmod +x /etc/service/puppet/run
@@ -26,13 +29,14 @@ RUN chmod +x /etc/service/puppet/run
 ADD scripts/puppetmaster-startup.sh /etc/service/puppetmaster/run
 RUN chmod +x /etc/service/puppetmaster/run
 
+# Cleanup Apt Cache
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
 # Expose Puppet Master port
 EXPOSE 8410
 
 # Data Volume for Manifests, Modules, and Environments
 VOLUME ["/data"]
-
-# don't clean apt cache, it breaks things and requires manual user intervention!
 
 # use baseimage's init system
 CMD ["/sbin/my_init"]
