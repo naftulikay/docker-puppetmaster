@@ -15,6 +15,10 @@ node 'vagrant-precise64' {
     package { 'lxc-docker':
         require => [Apt::Source["docker"]]
     }
+
+    # tools
+    package { 'lxc': } # lxc-attach
+    package { 'tree': }
     
     # install puppet client in vagrant
     apt::source { 'puppetlabs':
