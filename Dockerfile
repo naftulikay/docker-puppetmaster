@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.9.10
+FROM rfkrocktk/baseimage:1.0.0
 MAINTAINER Naftuli Tzvi Kay <rfkrocktk@gmail.com>
 
 ENV HOME /root
