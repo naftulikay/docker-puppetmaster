@@ -23,18 +23,17 @@ RUN curl -o puppet.deb -s https://apt.puppetlabs.com/puppetlabs-release-trusty.d
 RUN apt-get update -q 2 && DEBIAN_FRONTEND=noninteractive \
     apt-get install --yes -q 2 puppetmaster puppet nginx-extras passenger >/dev/null
 
+# Install the nginx configuration and sites
+ADD conf/nginx/nginx.conf /etc/nginx/nginx.conf
+ADD conf/nginx/puppetmaster-site.conf /etc/nginx/sites-available/puppetmaster
+RUN ln -s /etc/nginx/sites-available/puppetmaster /etc/nginx/sites-enabled/puppetmaster
+
 # Move /etc/puppet to /data
 RUN cp -r /etc/puppet /data
 
-# Install runit startup scripts
-#ADD scripts/puppet-agent-startup.sh /etc/service/puppet/run
-#RUN chmod +x /etc/service/puppet/run
-
-#ADD scripts/puppetmaster-startup.sh /etc/service/puppetmaster/run
-#RUN chmod +x /etc/service/puppetmaster/run
-
-# Cleanup Apt Cache
-# RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# Install boot scripts
+ADD scripts/00_generate_puppetmaster_keys.sh /etc/my_init.d/
+RUN chmod +x /etc/my_init.d/*.sh
 
 # Expose Puppet Master port
 EXPOSE 8410
