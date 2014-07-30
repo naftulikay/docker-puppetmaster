@@ -25,20 +25,22 @@ RUN apt-get update -q 2 && DEBIAN_FRONTEND=noninteractive \
 
 # Install the nginx configuration and sites
 ADD conf/nginx/nginx.conf /etc/nginx/nginx.conf
-RUN ln -s /etc/nginx/sites-available/puppetmaster /etc/nginx/sites-enabled/puppetmaster
+RUN ln -s /etc/nginx/sites-available/puppetmaster /etc/nginx/sites-enabled/puppetmaster \
+    && rm /etc/nginx/sites-enabled/default
 
 # Install the Puppet Master's rack server
 RUN mkdir -p /usr/share/puppet/rack/puppetmaster/tmp /usr/share/puppet/rack/puppetmaster/public \
     && cp /usr/share/puppet/ext/rack/config.ru /usr/share/puppet/rack/puppetmaster/ \
     && chown puppet:puppet -R /usr/share/puppet/rack/puppetmaster
 
-# Move /etc/puppet to /data
-# RUN cp -r /etc/puppet /data
+# Backup the Puppet config files, we'll regenerate them on boot if they're not present
+RUN mkdir -p /usr/lib/puppet/default \
+    && find /etc/puppet -maxdepth 1 -type f -iname "*.conf" -exec mv {} /usr/lib/puppet/default \;
 
 # Install boot scripts
-ADD scripts/00_generate_puppetmaster_keys.sh /etc/my_init.d/
-ADD scripts/01_generate_nginx_site.rb /etc/my_init.d/
-ADD scripts/02_generate_puppet_config.rb /etc/my_init.d/
+ADD scripts/10_generate_puppet_config.rb /etc/my_init.d/
+ADD scripts/11_generate_nginx_site.rb /etc/my_init.d/
+ADD scripts/12_generate_puppetmaster_keys.sh /etc/my_init.d/
 RUN chmod +x /etc/my_init.d/*
 
 # Install runit scripts
@@ -47,9 +49,6 @@ RUN chmod +x /etc/service/nginx/run
 
 # Expose Puppet Master port
 EXPOSE 8140
-
-# Data Volume for Manifests, Modules, and Environments
-VOLUME ["/data"]
 
 # use baseimage's init system
 CMD ["/sbin/my_init"]
