@@ -1,0 +1,44 @@
+{
+  "name": "stahnma-epel",
+  "version": "0.0.6",
+  "source": "http://github.com/stahnma/puppet-module-epel",
+  "author": "stahnma",
+  "license": "Apache License, Version 2.0",
+  "summary": "Setup the EPEL package repo",
+  "description": "Setup the EPEL package repo on Centos/RHEL et all",
+  "project_page": "http://github.com/stahnma/puppet-module-epel",
+  "dependencies": [
+
+  ],
+  "types": [
+
+  ],
+  "checksums": {
+    "Gemfile": "3189476f30a99858b367d955298fe469",
+    "Gemfile.lock": "a9ad5fb5b517b0b621070198c51d8145",
+    "Modulefile": "fc3037e6a4c4db5b1672861ab4ac3139",
+    "README.md": "98a664e1ca4017d7777a12311c3f38db",
+    "Rakefile": "946eced163d7f8e0da85bda4baa7fa9c",
+    "files/RPM-GPG-KEY-EPEL-5": "0466c259781def56dafe0a2cdc9de0c5",
+    "files/RPM-GPG-KEY-EPEL-6": "d865e6b948a74cb03bc3401c0b01b785",
+    "lib/facter/os_maj_version.rb": "806fb856251b605df379e973c716a41c",
+    "manifests/init.pp": "160e7210109cc32393051076ac4c54fa",
+    "manifests/params.pp": "aa4f9b256e829d59f233f499799b42aa",
+    "manifests/rpm_gpg_key.pp": "69086f12752a14b200e462afaa59a93c",
+    "spec/classes/epel_spec.rb": "7e8e5973fdccb866e91ed00a3fd0af4c",
+    "spec/classes/shared_base.rb": "861e3e39176e8fc09cfa572cb7f32e1c",
+    "spec/classes/shared_debuginfo.rb": "6009b4cc1dec7e53cdf41d53eb9ba753",
+    "spec/classes/shared_gpgkey.rb": "38a62fe24acfc9cc8d740d242c9f1c85",
+    "spec/classes/shared_source.rb": "9e17f66cf7a550451dc08b6ffd570550",
+    "spec/classes/shared_testing.rb": "a13221cd9d6024cf7be758faf0c438f5",
+    "spec/classes/shared_testing_debuginfo.rb": "5fc065cbf5339659d02a19b6ccce0e86",
+    "spec/classes/shared_testing_source.rb": "1f17f481b4bdc1a76d084d839caceb31",
+    "spec/defines/rpm_gpg_key_spec.rb": "489fa716eaa2aba013089a6cf552c5a6",
+    "spec/spec_helper.rb": "88667619511f33dc595d65232351d61c",
+    "spec/spec_helper_system.rb": "d24a7ffdf4b67dbbd3ef5687292f51cf",
+    "spec/system/basic_spec.rb": "bc475b95f390134b31d905590bf8b039",
+    "spec/system/usage_spec.rb": "04506df5627ecbe975acd1fd0407ae40",
+    "spec/unit/facter/os_maj_version_spec.rb": "67ab2730991d4a8430f1115aad46bcea",
+    "tests/init.pp": "7c69b7adf2ba141cb62cfc9e0704d59e"
+  }
+}
