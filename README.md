@@ -26,7 +26,7 @@ easily add SSH keys to your Docker instance by mounting `/root/.ssh/authorized_k
 
 Let's bust this out. Pull down the Docker image:
 
-   $ sudo docker pull rfkrocktk/puppetmaster
+    $ sudo docker pull rfkrocktk/puppetmaster
 
 Next, let's start up the Puppet Master in a new Docker container:
 
