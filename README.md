@@ -123,6 +123,7 @@ The Puppet Master provides the following environment variables for initial confi
 The local Puppet Agent provides the following environment variables for configuration of the Puppet Agent:
 
 | Variable Name | Required | Description |
+|---------------|----------|-------------|
 | `PUPPET_AGENT_ENVIRONMENT` | nope | The Puppet environment to run the Puppet Agent under. For this value to have any effect `PUPPETMASTER_ENVIRONMENTS_ENABLED` must be defined. If environments are enabled in the Puppet Master and no value is passed here, the default "production" environment will be used. |
 | `PUPPET_AGENT_CRON`    | nope | The CRON schedule at which to run the Puppet Agent. The Puppet Agent will _always_ run on system startup, in addition to whatever this value is set to. The default for this value is `0,30 * * * *`, which means that the Puppet Agent will run on boot and on the first and thirtieth minute of every hour. Don't worry, if a Puppet run overlaps another, no bad side-effects will happen; the CRON job checks to see if a Puppet Agent is running before running another one. |
 | `PUPPET_AGENT_VERBOSE` | nope | Set this environment variable to any value to enable verbose logging by the Puppet Agent. |
@@ -152,7 +153,7 @@ SSL has been configured on the NGINX site hosting the Puppet Mastor to only use 
 
 SSL has also been configured to use a hardened cipher list as recommended [here](https://j.mp/1qiXFeW), which is currently:
 
-   ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!MD5:!DSS
+    ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!MD5:!DSS
 
 The NGINX master process runs as `root`, but the worker processes run as `www-data`, as is the default for NGINX. It's important that NGINX runs the master process as `root` so it can read SSL certificates and keys and so other processes _may not_ read SSL certificates and keys.
 
