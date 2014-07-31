@@ -2,6 +2,14 @@
 
 require 'facter'
 
+# source the environment
+File.readlines("/etc/container_environment.sh").each do |line|
+    values = line.match('(?<=export ).+').to_s.split("=")
+    ENV[values[0]] = values[1]
+end
+
+puppetmaster_port = ENV.fetch("PUPPETMASTER_TCP_PORT", "8140")
+
 fqdn = Facter.value('fqdn')
 hostname = Facter.value('hostname')
 domain = Facter.value('domain')
@@ -9,10 +17,10 @@ domain = Facter.value('domain')
 template = %{# puppetmaster nginx config
 
 server {
-    listen 8140 ssl default_server;
+    listen #{puppetmaster_port} ssl default_server;
     server_name puppet puppet.#{domain} #{hostname} #{fqdn};
 
-    passenger_enabled on;
+    passenger_enabled          on;
     passenger_set_cgi_param    HTTP_X_CLIENT_S_DN $ssl_client_s_dn; 
     passenger_set_cgi_param    HTTP_X_CLIENT_VERIFY $ssl_client_verify; 
 
@@ -36,6 +44,8 @@ server {
     ssl_verify_depth           1;
 }}
 
-File.open("/etc/nginx/sites-available/puppetmaster", "w") { |file|
-    file.write(template)
-}
+if not File.file?("/etc/nginx/sites-available/puppetmaster") 
+    File.open("/etc/nginx/sites-available/puppetmaster", "w") { |file|
+        file.write(template)
+    }
+end
