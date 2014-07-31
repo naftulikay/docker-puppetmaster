@@ -110,9 +110,9 @@ automate moar things.
 
 The Puppet Master provides the following environment variables for initial configuration of the Puppet Master:
 
-| Variable Name | Required | Description |
-|---------------|----------|-------------|
-| `PUPPETMASTER_TCP_PORT` | nope | The master server port to run the Puppet Master on. The default is port 8140. |
+| Variable Name           | Required | Description                                                                   |
+|-------------------------|----------|-------------------------------------------------------------------------------|
+| `PUPPETMASTER_TCP_PORT` | nope     | The master server port to run the Puppet Master on. The default is port 8140. |
 | `PUPPETMASTER_DNS_NAMES` | nope | The DNS names for the Puppet Master to listen as. This is a comma delimited list which defaults to `$hostname,$hostname.$domain,puppet,$puppet.$domain`. This will be internally passed to the NGINX site for the Puppet Master and to `puppet cert generate` when creating the Puppet Master's certificate. If you're going to be accessing your Puppet Master outside of the local machine, make sure you add all of your DNS names here. |
 | `PUPPETMASTER_ENVIRONMENTS_ENABLED` | nope | Set this environment variable to any value to enable Puppet directory environments. By default, we use the old deprecated manifests directory which a lot of people still use, `/etc/puppet/manifests`. If you pass this value, you must use the Puppet environments directory `/etc/puppet/environments/$ENVIRONMENT/manifests` for your manifests and `/etc/puppet/environments/$ENVIRONMENT/modules` for your modules. The default environment is `production` in this mode. |
 | `PUPPETMASTER_VERBOSE` | nope | Set this environment variable to any value to enable verbose logging by the Puppet Master. |
