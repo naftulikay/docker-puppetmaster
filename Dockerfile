@@ -5,6 +5,9 @@ ENV HOME /root
 ENV LANG en_US.UTF-8
 RUN locale-gen en_US.UTF-8
 
+# Fixes Docker Automated Build problem
+RUN ln -s -f /bin/true /usr/bin/chfn
+
 # Install tools
 RUN apt-get update -q 2 && DEBIAN_FRONTEND=noninteractive \
     apt-get install -y apt-transport-https ca-certificates > /dev/null
