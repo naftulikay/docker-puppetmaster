@@ -8,17 +8,19 @@ File.readlines("/etc/container_environment.sh").each do |line|
     ENV[values[0]] = values[1]
 end
 
-puppetmaster_port = ENV.fetch("PUPPETMASTER_TCP_PORT", "8140")
-
 fqdn = Facter.value('fqdn')
 hostname = Facter.value('hostname')
 domain = Facter.value('domain')
+
+puppetmaster_dns_names = ENV.fetch(
+    "PUPPETMASTER_DNS_NAMES", "puppet,puppet.#{domain},#{hostname},#{fqdn}").split(",").join(" ")
+puppetmaster_port = ENV.fetch("PUPPETMASTER_TCP_PORT", "8140")
 
 template = %{# puppetmaster nginx config
 
 server {
     listen #{puppetmaster_port} ssl default_server;
-    server_name puppet puppet.#{domain} #{hostname} #{fqdn};
+    server_name #{puppetmaster_dns_names};
 
     passenger_enabled          on;
     passenger_set_cgi_param    HTTP_X_CLIENT_S_DN $ssl_client_s_dn; 
