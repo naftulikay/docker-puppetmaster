@@ -12,6 +12,6 @@ test -z "$PUPPETMASTER_DNS_NAMES" && \
     export PUPPETMASTER_DNS_NAMES="$hostname,$fqdn,puppet,puppet.$domain"
 
 # if there's no certificate yet, generate it
-if [ ! -f "/var/lib/puppet/ssl/certs/$hostname.pem" ]; then 
+if [ ! -f "/var/lib/puppet/ssl/certs/$fqdn.pem" ]; then 
     puppet cert generate --dns_alt_names "$PUPPETMASTER_DNS_NAMES" $fqdn >/dev/null 2>&1
 fi
