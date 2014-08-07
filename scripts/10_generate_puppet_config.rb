@@ -11,6 +11,7 @@ File.readlines("/etc/container_environment.sh").each do |line|
 end
 
 # setup variables
+path                              = ENV.fetch("PATH", "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin")
 puppet_conf_dir                   = "/etc/puppet"
 puppet_conf_defaults_dir          = "/usr/lib/puppet/default"
 puppet_auth_file                  = "#{puppet_conf_dir}/auth.conf"
@@ -46,6 +47,7 @@ run Puppet::Util::CommandLine.new.execute
 }).result(binding)
 
 puppet_config_template = ERB.new(%{[main]
+path=<%= path %>
 logdir=/var/log/puppet
 vardir=/var/lib/puppet
 ssldir=/var/lib/puppet/ssl
