@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 # import environment variables
 source /etc/container_environment.sh
@@ -13,5 +13,5 @@ test -z "$PUPPETMASTER_DNS_NAMES" && \
 
 # if there's no certificate yet, generate it
 if [ ! -f "/var/lib/puppet/ssl/certs/$fqdn.pem" ]; then 
-    puppet cert generate --dns_alt_names "$PUPPETMASTER_DNS_NAMES" $fqdn >/dev/null 2>&1
+    puppet cert generate --path "$PATH" --dns_alt_names "$PUPPETMASTER_DNS_NAMES" $fqdn
 fi
