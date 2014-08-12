@@ -35,6 +35,8 @@ hostname = Facter.value('hostname')
 passenger_config_template = ERB.new(%{# config.ru for passenger/puppet
 $0 = "master"
 
+ENV['PATH'] = "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
 ARGV << "--rack"
 ARGV << "--confdir" << "/etc/puppet"
 ARGV << "--vardir" << "/var/lib/puppet"
@@ -48,8 +50,6 @@ run Puppet::Util::CommandLine.new.execute
 }).result(binding)
 
 puppet_config_template = ERB.new(%{[main]
-certname=<%= fqdn %>
-path=<%= path %>
 logdir=/var/log/puppet
 vardir=/var/lib/puppet
 ssldir=/var/lib/puppet/ssl
