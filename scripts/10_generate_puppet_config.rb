@@ -29,6 +29,7 @@ puppetmaster_environments_enabled = ENV.fetch("PUPPETMASTER_ENVIRONMENTS_ENABLED
 
 passenger_conf_file      = "/usr/share/puppet/rack/puppetmaster/config.ru" 
 
+fqdn     = Facter.value('fqdn')
 hostname = Facter.value('hostname')
 
 passenger_config_template = ERB.new(%{# config.ru for passenger/puppet
@@ -47,6 +48,7 @@ run Puppet::Util::CommandLine.new.execute
 }).result(binding)
 
 puppet_config_template = ERB.new(%{[main]
+certname=<%= fqdn %>
 path=<%= path %>
 logdir=/var/log/puppet
 vardir=/var/lib/puppet
