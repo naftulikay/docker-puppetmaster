@@ -24,7 +24,8 @@ RUN curl -o puppet.deb -s https://apt.puppetlabs.com/puppetlabs-release-trusty.d
 
 # Install puppet, puppetmaster, nginx, and passenger
 RUN apt-get update -q 2 && DEBIAN_FRONTEND=noninteractive \
-    apt-get install --yes -q 2 puppetmaster puppet nginx-extras passenger >/dev/null
+    apt-get install --yes -q 2 puppetmaster=3.8.2-1puppetlabs1 puppet=3.8.2-1puppetlabs1 \
+        nginx-extras passenger >/dev/null
 
 # Install the nginx configuration and sites
 ADD conf/nginx/nginx.conf /etc/nginx/nginx.conf

@@ -1,5 +1,5 @@
 # Puppet for Docker Vagrant Box
-node 'vagrant-precise64' {
+node 'vagrant-trusty64' {
     # apt
     class { 'apt': }
    

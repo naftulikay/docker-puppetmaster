@@ -23,8 +23,8 @@ server {
     server_name #{puppetmaster_dns_names};
 
     passenger_enabled          on;
-    passenger_set_cgi_param    HTTP_X_CLIENT_S_DN $ssl_client_s_dn; 
-    passenger_set_cgi_param    HTTP_X_CLIENT_VERIFY $ssl_client_verify; 
+    passenger_set_header       X_CLIENT_S_DN $ssl_client_s_dn; 
+    passenger_set_header       X_CLIENT_VERIFY $ssl_client_verify; 
 
     access_log                 /var/log/nginx/puppet_access.log;
     error_log                  /var/log/nginx/puppet_error.log;
