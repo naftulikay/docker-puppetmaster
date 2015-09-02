@@ -32,7 +32,7 @@ Let's bust this out. Pull down the Docker image:
 Next, let's start up the Puppet Master in a new Docker container:
 
     $ sudo docker run -d --name ultramaster --hostname ultramaster \
-        -v /host/ultramaster-ssh-keys:/root/.ssh/authorized_keys.d
+        -v /host/ultramaster-ssh-keys:/root/.ssh/authorized_keys.d \
         -v /host/ultramaster-manifests:/etc/puppet/manifests \
         -v /host/ultramaster-modules:/etc/puppet/modules \
         rfkrocktk/puppetmaster
