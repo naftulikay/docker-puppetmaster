@@ -163,7 +163,7 @@ The Puppet Master Passenger application runs as `puppet`. Passenger also runs tw
 ## Versioning
 
 We're using [semantic versioning](http://semver.org), though we're matching our own versions now to the Puppet Master 
-version which we're internally pinning to. (if you use docker-puppetmaster version 3.8.2, you're getting a Docker image
-with a Puppet Master version of 3.8.2) 
+version which we're internally pinning to. (if you use docker-puppetmaster version 3.8.3, you're getting a Docker image
+with a Puppet Master version of 3.8.3)
 
 This is different than it was before. 
