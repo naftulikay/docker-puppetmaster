@@ -2,7 +2,7 @@ docker-puppetmaster
 ===================
 
 A resplendently refreshing Docker image for hosting a containerized, self-provisioning Puppet Master,
-served by NGINX and Passenger. The current version is 3.8.2.
+served by NGINX and Passenger. The current version is 3.8.3.
 
 The latest fad is to [Dockerize](http://i.imgur.com/V8KfCpj.jpg) all the things, so why not run your
 Puppet Master in a Docker container? Did we mention that it also runs its own Puppet agent so that you
@@ -32,7 +32,7 @@ Let's bust this out. Pull down the Docker image:
 Next, let's start up the Puppet Master in a new Docker container:
 
     $ sudo docker run -d --name ultramaster --hostname ultramaster \
-        -v /host/ultramaster-ssh-keys:/root/.ssh/authorized_keys.d
+        -v /host/ultramaster-ssh-keys:/root/.ssh/authorized_keys.d \
         -v /host/ultramaster-manifests:/etc/puppet/manifests \
         -v /host/ultramaster-modules:/etc/puppet/modules \
         rfkrocktk/puppetmaster
@@ -163,7 +163,7 @@ The Puppet Master Passenger application runs as `puppet`. Passenger also runs tw
 ## Versioning
 
 We're using [semantic versioning](http://semver.org), though we're matching our own versions now to the Puppet Master 
-version which we're internally pinning to. (if you use docker-puppetmaster version 3.8.2, you're getting a Docker image
-with a Puppet Master version of 3.8.2) 
+version which we're internally pinning to. (if you use docker-puppetmaster version 3.8.3, you're getting a Docker image
+with a Puppet Master version of 3.8.3)
 
 This is different than it was before. 
