@@ -3,6 +3,8 @@ MAINTAINER Naftuli Tzvi Kay <rfkrocktk@gmail.com>
 
 ENV HOME /root
 ENV LANG en_US.UTF-8
+ENV PUPPET_VERSION=3.8.6-1puppetlabs1
+ENV IMAGE_RELEASE=1
 RUN locale-gen en_US.UTF-8
 
 # Fixes Docker Automated Build problem
@@ -10,6 +12,7 @@ RUN ln -s -f /bin/true /usr/bin/chfn
 
 # Install tools
 RUN apt-get update -q 2 && DEBIAN_FRONTEND=noninteractive \
+    apt-get upgrade -y > /dev/null && \
     apt-get install -y apt-transport-https ca-certificates > /dev/null
 
 # Install Phusion Passenger Repository for Passenger/NGINX
@@ -24,7 +27,7 @@ RUN curl -o puppet.deb -s https://apt.puppetlabs.com/puppetlabs-release-trusty.d
 
 # Install puppet, puppetmaster, nginx, and passenger
 RUN apt-get update -q 2 && DEBIAN_FRONTEND=noninteractive \
-    apt-get install --yes -q 2 puppetmaster=3.8.3-1puppetlabs1 puppet=3.8.3-1puppetlabs1 \
+    apt-get install --yes -q 2 puppetmaster=$PUPPET_VERSION puppet=$PUPPET_VERSION \
         nginx-extras passenger >/dev/null
 
 # Install the nginx configuration and sites

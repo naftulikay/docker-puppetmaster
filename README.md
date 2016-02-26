@@ -2,7 +2,7 @@ docker-puppetmaster
 ===================
 
 A resplendently refreshing Docker image for hosting a containerized, self-provisioning Puppet Master,
-served by NGINX and Passenger. The current version is 3.8.3.
+served by NGINX and Passenger. The current version is 3.8.6-1.
 
 The latest fad is to [Dockerize](http://i.imgur.com/V8KfCpj.jpg) all the things, so why not run your
 Puppet Master in a Docker container? Did we mention that it also runs its own Puppet agent so that you
@@ -159,6 +159,8 @@ SSL has also been configured to use a hardened cipher list as recommended [here]
 The NGINX master process runs as `root`, but the worker processes run as `www-data`, as is the default for NGINX. It's important that NGINX runs the master process as `root` so it can read SSL certificates and keys and so other processes _may not_ read SSL certificates and keys.
 
 The Puppet Master Passenger application runs as `puppet`. Passenger also runs two processes, `PassengerWatchdog` and `PassengerHelperAgent` as `root`, and a third `PassengerLoggingAgent` as `nobody`.
+
+Security updates last applied at 2016:02:25 17:16:32 -0800, the glibc bug should be patched.
 
 ## Versioning
 
