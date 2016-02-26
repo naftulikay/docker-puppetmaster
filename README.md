@@ -160,6 +160,8 @@ The NGINX master process runs as `root`, but the worker processes run as `www-da
 
 The Puppet Master Passenger application runs as `puppet`. Passenger also runs two processes, `PassengerWatchdog` and `PassengerHelperAgent` as `root`, and a third `PassengerLoggingAgent` as `nobody`.
 
+Security updates last applied at 2016:02:25 17:16:32 -0800, the glibc bug should be patched.
+
 ## Versioning
 
 We're using [semantic versioning](http://semver.org), though we're matching our own versions now to the Puppet Master 
