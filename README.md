@@ -2,7 +2,7 @@ docker-puppetmaster
 ===================
 
 A resplendently refreshing Docker image for hosting a containerized, self-provisioning Puppet Master,
-served by NGINX and Passenger. The current version is 3.8.6-1.
+served by NGINX and Passenger. The current version is 3.8.6-2.
 
 The latest fad is to [Dockerize](http://i.imgur.com/V8KfCpj.jpg) all the things, so why not run your
 Puppet Master in a Docker container? Did we mention that it also runs its own Puppet agent so that you
