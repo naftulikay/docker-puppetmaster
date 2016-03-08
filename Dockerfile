@@ -4,7 +4,7 @@ MAINTAINER Naftuli Tzvi Kay <rfkrocktk@gmail.com>
 ENV HOME /root
 ENV LANG en_US.UTF-8
 ENV PUPPET_VERSION=3.8.6-1puppetlabs1
-ENV IMAGE_RELEASE=1
+ENV IMAGE_RELEASE=2
 RUN locale-gen en_US.UTF-8
 
 # Fixes Docker Automated Build problem
