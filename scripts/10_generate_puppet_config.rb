@@ -26,6 +26,7 @@ puppetmaster_port                 = ENV.fetch("PUPPETMASTER_TCP_PORT", "8140")
 puppetmaster_verbose              = ENV.fetch("PUPPETMASTER_VERBOSE", nil)
 puppetmaster_debug                = ENV.fetch("PUPPETMASTER_DEBUG", nil)
 puppetmaster_environments_enabled = ENV.fetch("PUPPETMASTER_ENVIRONMENTS_ENABLED", nil)
+puppetmaster_dns_alt_names        = ENV.fetch("PUPPETMASTER_DNS_ALT_NAMES", nil)
 
 passenger_conf_file      = "/usr/share/puppet/rack/puppetmaster/config.ru" 
 
@@ -50,6 +51,7 @@ run Puppet::Util::CommandLine.new.execute
 }).result(binding)
 
 puppet_config_template = ERB.new(%{[main]
+dns_alt_names = <%= puppetmaster_dns_alt_names %>
 logdir=/var/log/puppet
 vardir=/var/lib/puppet
 ssldir=/var/lib/puppet/ssl
